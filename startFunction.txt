@@ -1,0 +1,59 @@
+function(hypeDocument, element, event) {
+	        var roadBooksid = [];
+	        var selectCellIndex;
+	/*
+		
+		
+		
+	*/
+	var requestUrl = "http://t2tour.com/T2tourAPI/selectcase.php";
+	var totalCount = 0;
+	$.get(requestUrl,
+	   function(data){
+             var value = data.value;
+
+	        $.each(value, function (index, item) {
+		        var indexZ = 100 + index;
+		         var delataTop = 132 + (index*265);
+		         roadBooksid.push(item.roadbook_id);
+		         addHtml = "<div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: "+indexZ+";\"><div class=\"HYPE_element contentCell\" id=\"hype-obj-SgX32yxB6esGmv9T\" aria-flowto=\"PresentIM\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 23; width: 376px; height: 269px; top: "+delataTop+"px; left: -1px;\"><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 13;\"><div class=\"HYPE_element lblcontent\" id=\"hype-obj-RJ76fDmWFiJXX2Ys\" aria-flowto=\"hype-obj-vbXKrySeHlTOf142\" style=\"pointer-events: auto; position: absolute; color: rgb(255, 255, 255); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 18px; word-wrap: break-word; overflow: visible; z-index: 13; width: 359px; height: 18px; top: 182px; left: 1px;\">"+item.case_content+"<br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 12;\"><div class=\"HYPE_element lblplace\" id=\"hype-obj-vbXKrySeHlTOf142\" aria-flowto=\"hype-obj-owKd0uCkwOB21iha\" style=\"pointer-events: auto; position: absolute; color: rgb(121, 121, 121); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 12; width: 68px; height: 18px; top: 235px; left: 162px;\">"+item.case_goto+"<br><br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 11;\"><div class=\"HYPE_element lbllike\" id=\"hype-obj-owKd0uCkwOB21iha\" aria-flowto=\"hype-obj-RFwWj99tpYVRlUqE\" style=\"pointer-events: auto; position: absolute; color: rgb(121, 121, 121); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 11; width: 53px; height: 18px; top: 235px; left: 52px;\">"+item.case_praise+"<br><br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 10;\"><div class=\"HYPE_element IMLocation\" id=\"hype-obj-RFwWj99tpYVRlUqE\" aria-flowto=\"hype-obj-SUtspvTAaGmOcXey\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 10; display: inline; width: 27px; height: 37px; top: 223px; left: 128px; background-image: url(photostream.hyperesources/%E5%AE%9A%E4%BD%8D.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 9;\"><div class=\"HYPE_element\" id=\"hype-obj-SUtspvTAaGmOcXey\" aria-flowto=\"hype-obj-gNCypBvOW6PIyH4B\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 9; display: inline; width: 54px; height: 18px; top: 217px; left: 166px; background-image: url(photostream.hyperesources/places.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 8;\"><div class=\"HYPE_element\" id=\"hype-obj-gNCypBvOW6PIyH4B\" aria-flowto=\"hype-obj-QRncKIVCHbbevnSF\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 8; display: inline; width: 39px; height: 16px; top: 219px; left: 62px; background-image: url(photostream.hyperesources/likes.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 7;\"><div class=\"HYPE_element IMHeart\" id=\"hype-obj-QRncKIVCHbbevnSF\" aria-flowto=\"hype-obj-5a5aWEg7A785rmP1\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 7; display: inline; width: 32px; height: 29px; top: 226px; left: 17px; background-image: url(photostream.hyperesources/%E6%A1%83%E5%BF%83.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 6;\"><div class=\"HYPE_element IMUser\" id=\"hype-obj-5a5aWEg7A785rmP1\" aria-flowto=\"hype-obj-ZQKVP57uets3FIyF\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 6; display: inline; width: 41px; height: 34px; top: 6px; left: 21px; background-image: url(http://t2tour.com" + item.case_img + "); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 5;\"><div class=\"HYPE_element lblUser\" id=\"hype-obj-ZQKVP57uets3FIyF\" aria-flowto=\"hype-obj-HcQEz1c1FS0Xe7Hg\" style=\"pointer-events: auto; position: absolute; color: rgb(121, 121, 121); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 5; width: 88px; height: 18px; top: 6px; left: 84px;\">"+item.case_name+"<br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 4;\"><div class=\"HYPE_element lblTime\" id=\"hype-obj-HcQEz1c1FS0Xe7Hg\" aria-flowto=\"hype-obj-Kkk1i5cltEeZUa9I\" style=\"pointer-events: auto; position: absolute; color: rgb(121, 121, 121); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 4; width: 88px; height: 18px; top: 6px; left: 263px;\">"+item.case_time+"<br><br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 3;\"><div class=\"HYPE_element IMTimeClock\" id=\"hype-obj-Kkk1i5cltEeZUa9I\" aria-flowto=\"hype-obj-Gz5fFcvd8mzBQd3Z\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 3; display: inline; width: 19px; height: 18px; top: 14px; left: 241px; background-image: url(photostream.hyperesources/%E6%97%B6%E9%92%9F.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 2;\"><div class=\"HYPE_element IMContent\" id=\"hype-obj-Gz5fFcvd8mzBQd3Z\" aria-flowto=\"hype-obj-DFer5W5lXOO3gAlO\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 2; display: inline; width: 376px; height: 166px; top: 48px; left: 0px; background-image: url(http://t2tour.com" + item.case_url + "); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 1;\"><div class=\"HYPE_element IMBg\" id=\"hype-obj-DFer5W5lXOO3gAlO\" aria-flowto=\"hype-obj-SgX32yxB6esGmv9T\" style=\"pointer-events: auto; position: absolute; border: 1px solid rgb(216, 221, 228); overflow: visible; z-index: 1; width: 373px; height: 263px; top: 0px; left: 1px; background-color: rgb(232, 235, 237);\"></div></div></div></div>";
+		    $('.contentCell').parent().parent().append(addHtml);
+
+		         totalCount++;
+	        });
+	        
+    
+		var contentSizeHeight =  132 + (totalCount*269);
+		$('.BG').parent().parent().height(contentSizeHeight);
+		$('.BG').parent().parent().parent().height(contentSizeHeight);
+		$('.BG').height(contentSizeHeight);
+	   // hypeDocument.showSceneNamed('路书', hypeDocument.kSceneTransitionCrossfade, 1.1);
+
+		$(function(){     
+         $('.contentCell').each(function(){  
+         $(this).click(function(){
+	         //获取点击的div当前高度  
+	         var topString = $(this).css("top");
+	         var top = parseInt(topString.substr(0, topString.length-2)) - 132;
+            //alert(top/265);
+            selectCellIndex = top/265;
+            //alert(roadBooksid[selectCellIndex]);
+            //hypeDocument.showSceneNamed('路书', hypeDocument.kSceneTransitionCrossfade, 1.1);
+           //console.log(hypeDocument   .sceneNames());
+           //hypeDocument.showSceneNamed('加载', hypeDocument.kSceneTransitionCrossfade, 1.1);
+           	//hypeDocument.startTimelineNamed('模糊',hypeDocument.kDirectionForward);
+           	//location.reload();
+           	//hypeDocument.showSceneNamed('路书', hypeDocument.kSceneTransitionCrossfade, 1.1);
+            location.href="Lushu/photostreamLushu.html?"+roadBooksid[selectCellIndex];
+
+        });  
+    });  
+});  
+
+		   
+	   },"json");
+	
+	
+	
+
+}

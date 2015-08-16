@@ -1,0 +1,3 @@
+function(hypeDocument, element, event) {
+	$('.presentDetail').parent().css({"z-index":"0"});
+}

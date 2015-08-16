@@ -1,0 +1,131 @@
+function(hypeDocument, element, event) {
+// 	alert("开始方法");
+	var itemLeft = hypeDocument.getElementById('itemLushuLeft');
+	var selectedIndex;
+	//alert($('.itemLushuLeft').parent().width());
+	//$('#itemLushuLeft').parent().parent().append("<p>haha</p>");
+	console.log(typeof itemLeft);
+	$('.itemLushuLeft').hide();
+	$('.itemLushuRight').hide();
+	var lushuIndex = 0;
+// 	var requestUrl = "lushudata.json" + "?"+"t="+Math.random();//这里在地址后面跟上一个时间戳 , 防止缓存 (如果不这样做safari会报找不到资源错误)
+	var requestUrl = "http://t2tour.com/T2tourAPI/selectlus.php";//这里在地址后面跟上一个时间戳 , 防止缓存 (如果不这样做safari会报找不到资源错误)
+/*
+	$.ajax({  
+       url: requestUrl,  
+       data: JSON.stringify({"roadbook_id": "DZ20150517US01"}),  
+                  contentType:"application/json; charset=utf-8",  
+                  type:"POST",  
+                  crossDomain: true,  
+                  dataType: 'JSONP',  
+       success: function (data) {  
+	       alert("ajax跨域成功");
+       },  
+       error: function (xhr, textStatus, errMsg) {  
+             
+       }  
+});  
+*/
+	 
+	$.post(requestUrl, {"roadbook_id": paramRoadBook},
+	   function(data){
+	           var value = data.value;
+	           var totalCount = 0;
+			    $.each(value.timeday, function (index, item) {
+				    var parentIndex = index;
+				     $.each(item, function (index, timeitem) {
+					     //alert("开始addHtml循环" + i);
+		lushuItem.push(timeitem);
+		var indexZ = totalCount +10;
+		//var delataTop = 107 + (index*(140 + 20));
+		var delataTop = 8 + (totalCount  *(140 + 20));
+		var contentValue  = "";
+		var addHtml = "";
+		//alert("正在获取数据");
+					     
+					     if(index%2 ==0)
+		{
+			addHtml = "<div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: "+indexZ+";\"><div class=\"HYPE_element itemLushuRight\" id=\"hype-obj-UHpGEiqOuhv20k3g\" aria-flowto=\"centerLine\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 4; display: inline; width: 198px; height: 133px; top: "+delataTop+"px; left: 172px;\"><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 4;\"><div class=\"HYPE_element\" id=\"hype-obj-1Ko4Jj08G1g6Y9Nu\" aria-flowto=\"lushuLblRight\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 4; display: inline; width: 23px; height: 24px; top: 23px; left: 0px; background-image: url(%E7%AE%AD%E5%A4%B41%281%29.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 3;\"><div class=\"HYPE_element\" id=\"lushuLblRight\" aria-flowto=\"lushuImRight\" style=\"pointer-events: auto; position: absolute; color: rgb(255, 255, 255); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 3; width: 138px; height: 18px; top: 98px; left: 36px;\">"+timeitem.content.substr(0, 6)+"..."+"<br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 2;\"><div class=\"HYPE_element\" id=\"lushuImRight\" aria-flowto=\"hype-obj-BqYv7HcvkmmjFz3k\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 2; display: inline; width: 151px; height: 95px; top: 5px; left: 39px; background-image: url(http://t2tour.com" + timeitem.images + "); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 1;\"><div class=\"HYPE_element\" id=\"hype-obj-BqYv7HcvkmmjFz3k\" aria-flowto=\"hype-obj-UHpGEiqOuhv20k3g\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 1; display: inline; width: 178px; height: 133px; top: 0px; left: 20px; background-image: url(%E6%99%AF%E7%82%B9%E5%AF%B9%E8%AF%9D%E6%A1%86.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div></div></div>";
+								}else{
+			//奇数
+			addHtml = "<div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: "+indexZ+";\"><div class=\"HYPE_element itemLushuLeft\" id=\"hype-obj-SbdrZcmf6zsw76as\" aria-flowto=\"hype-obj-6bCWr8Gs3A6I5hfw\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 10; display: inline; width: 194px; height: 140px; top: "+delataTop+"px; left: 4px;\"><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 4;\"><div class=\"HYPE_element\" id=\"hype-obj-BnhhPx4lTsj95sTR\" aria-flowto=\"lushuLblLeft\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 4; display: inline; width: 23px; height: 24px; top: 58px; left: 171px; background-image: url(%E7%AE%AD%E5%A4%B42%281%29.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 3;\"><div class=\"HYPE_element\" id=\"lushuLblLeft\" aria-flowto=\"lushuImLeft\" style=\"pointer-events: auto; position: absolute; color: rgb(255, 255, 255); padding: 8px; display: inline; font-family: Helvetica, Arial, sans-serif; font-size: 16px; word-wrap: break-word; overflow: visible; z-index: 3; width: 134px; height: 18px; top: 103px; left: 9px;\">"+timeitem.content.substr(0, 6)+"..."+"<br></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 2;\"><div class=\"HYPE_element\" id=\"lushuImLeft\" aria-flowto=\"hype-obj-VsA8jMgjs4t78DlQ\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 2; display: inline; width: 150px; height: 95px; top: 10px; left: 9px; background-image: url(http://t2tour.com" + timeitem.images + "); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div><div class=\"HYPE_element_container\" style=\"position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; z-index: 1;\"><div class=\"HYPE_element\" id=\"hype-obj-VsA8jMgjs4t78DlQ\" aria-flowto=\"hype-obj-SbdrZcmf6zsw76as\" style=\"pointer-events: auto; position: absolute; overflow: visible; z-index: 1; display: inline; width: 178px; height: 140px; top: 0px; left: 0px; background-image: url(%E4%BA%A4%E9%80%9A%E5%AF%B9%E8%AF%9D%E6%A1%86.png); background-size: 100% 100%; background-repeat: no-repeat;\"></div></div></div></div>"
+		}
+					     //$('.itemLushuLeft').parent().parent().append(addHtml);
+                       var Iframe = $('.MyFrame').find("iframe");
+					   var Iframe_Conts = Iframe.contents().find("body");
+                      // alert(Iframe_Conts.width());
+                      Iframe_Conts.append(addHtml);
+					     totalCount++;
+	
+					      });	
+					       });
+	hypeDocument.startTimelineNamed('loadingDone',hypeDocument.kDirectionForward);
+/*
+	var contentSizeHeight =  8 + (totalCount  *(140 + 20));
+
+	$('.itemLushuLeft').parent().parent().height(contentSizeHeight);
+	$('.itemLushuLeft').parent().parent().parent().height(contentSizeHeight);
+	$('#centerLine').height(contentSizeHeight);
+	$('#BG').height(contentSizeHeight);
+*/
+
+	$(function(){     
+		 var Iframe = $('.MyFrame').find("iframe");
+		 var Iframe_Conts = Iframe.contents().find(".itemLushuLeft");//这一句特别重要
+		 //alert(Iframe_Conts.width());
+         Iframe_Conts.each(function(){  
+	         $(this).click(function(){
+	          //获取点击的div当前高度  
+	         var topString = $(this).css("top");
+	         var top = parseInt(topString.substr(0, topString.length-2)) - 8;
+             //alert(top/160);
+             selectLushuItem = lushuItem[top/160];
+             var presentIframe = $('.presentDetail').find("iframe");
+
+            // presentIframe.contents().find("body").replaceWith(innertext);
+             //$('.presentDetail').parent().css({"z-index":"999"});
+	       // hypeDocument.startTimelineNamed('PresentDetailAnimation', hypeDocument.kDirectionForward);
+	       var string=JSON.stringify(selectLushuItem);
+           sessionStorage.removeItem("name");
+           sessionStorage.name = selectLushuItem.content;
+		   window.open("LushuDetail.php?"+string);
+
+        });  
+	      });  
+	                 
+	     var lushuRight = Iframe.contents().find(".itemLushuRight");//这一句特别重要
+         lushuRight.each(function(){  
+	         $(this).click(function(){
+	          //获取点击的div当前高度  
+	         var topString = $(this).css("top");
+	         var top = parseInt(topString.substr(0, topString.length-2)) - 8;
+             //alert(top/160);
+             selectLushuItem = lushuItem[top/160];
+             var presentIframe = $('.presentDetail').find("iframe");
+
+            // presentIframe.contents().find("body").replaceWith(innertext);
+             //$('.presentDetail').parent().css({"z-index":"999"});
+	       // hypeDocument.startTimelineNamed('PresentDetailAnimation', hypeDocument.kDirectionForward);
+	       var string=JSON.stringify(selectLushuItem);
+          // alert(selectLushuItem.content);
+            sessionStorage.removeItem("name");
+            sessionStorage.name = selectLushuItem.content;
+            //alert(sessionStorage.name);
+            //console.log(selectLushuItem.content);
+	       window.open("LushuDetail.php?"+string);
+          
+          
+           
+           
+
+        });  
+	       });               
+
+});  
+
+
+	  },"json");
+	  
+	  	
+
+	 }
