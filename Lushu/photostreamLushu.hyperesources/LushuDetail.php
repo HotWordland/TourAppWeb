@@ -176,8 +176,6 @@
 <!-- <script src="js/templatemo_script.js"></script> -->
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' 
 	language='JavaScript' charset='gb2312'></script></div>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="//cdn.jsdelivr.net/stickynavbar.js/1.3.0/jquery.stickyNavbar.min.js"></script>
 <script type="text/javascript">
        var value_sessionStorge = sessionStorage.name;
        alert(value_sessionStorge);
